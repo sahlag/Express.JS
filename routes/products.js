@@ -25,12 +25,12 @@ router.delete('/suppression', (req, res) =>{
   res.send('Produit supprimé');
 });
 // utilisation de plusieur callbacks.
-router.get('/detail',(req, res, next)=>{
+router.get('/detail/:name',(req, res, next)=>{
   console.log("[spy]: Accès au detail du produit");
    // on passe au middleware suivant
    next();
 },(req, res, )=>{
-  res.send('<h1>Detait du produit');
+  res.send(`<h1>Detait du produit: ${req.params.name}</h1>`);
 }
 );
 
