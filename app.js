@@ -55,6 +55,16 @@ app.delete('/produit/suppression', (req, res) =>{
   res.send('Produit supprimé');
 });
 
+app.get('/produit/detail',(req, res, next)=>{
+  console.log("[spy]: Accès au detail du produit");
+   // on passe au middleware suivant
+   next();
+},(req, res, )=>{
+  res.send('<h1>Detait du produit');
+}
+
+);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
