@@ -21,8 +21,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//création d'un route avec GET
 app.get('/contact',(req, res) =>{
 res.send("<h1>bienvenue sur la page de contact</h1>")
+});
+
+//création d'un route avec PUT
+app.put('/about',(req, res) =>{
+const monObjet = {"title" : "About"};
+const monObjetString = JSON.stringify(monObjet);
+res.send(monObjetString);
 });
 
 // catch 404 and forward to error handler
