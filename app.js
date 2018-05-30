@@ -1,13 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let productRouter = require ('./routes/products');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Systéme de routage
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/produit',productRouter);
 
 //création d'un route avec GET
 app.get('/contact',(req, res) =>{
@@ -33,30 +36,16 @@ const monObjet = {"title" : "About"};
 const monObjetString = JSON.stringify(monObjet);
 res.send(monObjetString);
 });
-// Création d'un produit
 
-app.route('/produit/creation')
-.get((req, res) =>{
- res.send(`Formulaire nouveau produit
- <form method="post">
- <label for="name">Nom du produit</label>
- <input type="text" name="name" id="name" />
- <input type="submit" value="Créer" />
- </form>
- `);
-})
-.post((req, res) =>{
-  res.send('Produit créé');
-});
-
-
+// Modifier un produit
 app.put('/produit/Modification', (req, res) =>{
   res.send('produit modifier');
 });
+// suppremer un produit
 app.delete('/produit/suppression', (req, res) =>{
   res.send('Produit supprimé');
 });
-
+// utilisation de plusieur callbacks.
 app.get('/produit/detail',(req, res, next)=>{
   console.log("[spy]: Accès au detail du produit");
    // on passe au middleware suivant
@@ -64,7 +53,6 @@ app.get('/produit/detail',(req, res, next)=>{
 },(req, res, )=>{
   res.send('<h1>Detait du produit');
 }
-
 );
 
 // catch 404 and forward to error handler
