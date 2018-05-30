@@ -37,23 +37,9 @@ const monObjetString = JSON.stringify(monObjet);
 res.send(monObjetString);
 });
 
-// Modifier un produit
-app.put('/produit/Modification', (req, res) =>{
-  res.send('produit modifier');
+app.get(/(ba)+r+$/,(req, res)=>{
+  res.send('URL catched !');
 });
-// suppremer un produit
-app.delete('/produit/suppression', (req, res) =>{
-  res.send('Produit supprimé');
-});
-// utilisation de plusieur callbacks.
-app.get('/produit/detail',(req, res, next)=>{
-  console.log("[spy]: Accès au detail du produit");
-   // on passe au middleware suivant
-   next();
-},(req, res, )=>{
-  res.send('<h1>Detait du produit');
-}
-);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
