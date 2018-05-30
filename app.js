@@ -35,19 +35,21 @@ res.send(monObjetString);
 });
 // Création d'un produit
 
-app.get('/produit/creation',(req, res) =>{
+app.route('/produit/creation')
+.get((req, res) =>{
  res.send(`Formulaire nouveau produit
  <form method="post">
  <label for="name">Nom du produit</label>
  <input type="text" name="name" id="name" />
  <input type="submit" value="Créer" />
  </form>
- `)
-});
-
-app.post('/produit/creation', (req, res) =>{
+ `);
+})
+.post((req, res) =>{
   res.send('Produit créé');
 });
+
+
 app.put('/produit/Modification', (req, res) =>{
   res.send('produit modifier');
 });
