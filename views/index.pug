@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-html(lang="fr")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        link(rel="stylesheet", href="/dist/css/bootstrap.min.css")
-        title= title ?title: "Node.js avec Express.js"
-    body
 
-        include partials/_navbar
+extends partials/_layout
 
-       
-        
-        h1 bonjour tout le monde. 
-        p=name
 
-    //chargement de bootstrap, jquery
-    script(src="/dist/jquery.min.js")
-    script(src="/dist/js/bootstrap.bundle.min.js")
+block content
+    h1 bonjour tout le monde. 
+    p=name
