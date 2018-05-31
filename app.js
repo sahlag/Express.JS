@@ -31,10 +31,11 @@ res.send("<h1>bienvenue sur la page de contact</h1>")
 });
 
 //création d'un route avec PUT
-app.put('/about',(req, res) =>{
+app.get('/about',(req, res) =>{
 const monObjet = {"title" : "About"};
-const monObjetString = JSON.stringify(monObjet);
-res.send(monObjetString);
+//const monObjetString = JSON.stringify(monObjet);
+//res.send(monObjetString);
+res.json(monObjet);
 });
 
 app.get(/(ba)+r+$/,(req, res)=>{
