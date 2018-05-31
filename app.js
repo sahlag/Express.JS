@@ -10,15 +10,19 @@ let productRouter = require ('./routes/products');
 
 let app = express();
 
-// view engine setup
+// D'finition du moteur de vues
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares de base
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// rendre des assets: CSS/JS/IMG/FONTS.
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/dist', express.static(path.join(__dirname,'node_modules/jquery/dist')));
+app.use('/dist', express.static(path.join(__dirname,'node_modules/bootstrap/dist')));
 
 //Systéme de routage
 app.use('/', indexRouter);
