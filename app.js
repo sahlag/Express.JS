@@ -14,7 +14,7 @@ let productRouter = require ('./routes/products');
 // on céé notre application Express
 let app = express();
 
-// D'finition du moteur de templates(vues)
+// Définition du moteur de templates(vues)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
