@@ -94,7 +94,7 @@ router.get('/detail/:id',(req, res, next)=>{
   const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
   if(isIdValid){
   // find avec id
-  Recipe.find(
+  Recipe.findOne(
     {'_id' : req.params.id},
     (err, recipe)=>{
       if(err)
@@ -102,7 +102,7 @@ router.get('/detail/:id',(req, res, next)=>{
         else{
           console.log('Recett récupétée');
           console.log(recipe);
-          res.render('produits/detail');
+          res.render('produits/detail',{ recipe: recipe });
     } 
     }
   );
