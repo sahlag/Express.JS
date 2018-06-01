@@ -76,12 +76,22 @@ router.get('/', (req, res)=>{
   
 })
 //Modifier un produit
-router.put('/Modification', (req, res) =>{
-  res.send('produit modifier');
-});
+router.route('/modification/:id')
+.get(
+ (req, res, next) => {
+   const id = req.params.id;
+ // on propose un formulaire pour chander le nom du produit
+ res.render('produits/edit');
+}
+)
+
+.post(
+  (req, res)=>{
+  //Mise à jour du nom du produit
+  }
+);
 // suppremer un produit
 router.delete('/suppression', (req, res) =>{
-  res.send('Produit supprimé');
 });
 // utilisation de plusieur callbacks.
 router.get('/detail/:id',(req, res, next)=>{
@@ -90,27 +100,37 @@ router.get('/detail/:id',(req, res, next)=>{
    next();
 },
 (req, res, next )=>{
-
-  const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
-  if(isIdValid){
-  // find avec id
-  Recipe.findOne(
-    {'_id' : req.params.id},
-    (err, recipe)=>{
-      if(err)
-      { next(err); }
-        else{
-          console.log('Recett récupétée');
-          console.log(recipe);
-          res.render('produits/detail',{ recipe: recipe });
-    } 
-    }
-  );
-} else {
-  next(createError(404));
-}  
+  const id = req.params.id;
+  getRecipeById(id, 'produits/edit', res, next);
 }
 );
+/**
+ * Fonctionqui retourne le recette correspondante
+ */
+
+function getRecipeById(id, filenameView, res, next){
+  const isIdValid = mongoose.Types.ObjectId.isValid(id);
+  if(isIdValid){
+    // find avec id
+    Recipe.findOne(
+      {'_id' : id},
+      (err, recipe)=>{
+        if(err)
+        { next(err); }
+          else{
+            console.log('Recett récupétée');
+            console.log(recipe);
+            res.render(filenameView, { recipe: recipe });
+      } 
+      }
+    );
+  } else {
+    next(createError(404));
+    
+  
+  }
+
+}
 
 // export du module 
 module.exports = router;
