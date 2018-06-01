@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const recipeFile = require('../model/recipe');
 const Recipe = recipeFile.Recipe;
@@ -87,9 +88,27 @@ router.get('/detail/:id',(req, res, next)=>{
   console.log("[spy]: Accès au detail du produit");
    // on passe au middleware suivant
    next();
-},(req, res, )=>{
+},
+(req, res, next )=>{
+
+  const isIdValid = mongoose.Types.ObjectId.isValid(req.params.id);
+  if(isIdValid){
   // find avec id
-  res.render(`produits/detail`);
+  Recipe.find(
+    {'_id' : req.params.id},
+    (err, recipe)=>{
+      if(err)
+      { next(err); }
+        else{
+          console.log('Recett récupétée');
+          console.log(recipe);
+          res.render('produits/detail');
+    } 
+    }
+  );
+} else {
+  next(createError(404));
+}  
 }
 );
 
