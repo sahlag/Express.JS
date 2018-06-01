@@ -16,13 +16,14 @@ router.route('/creation')
  `);
 })
 .post((req, res) =>{
-   // Ajout de la recette en BDD
-   const maRecette = new Recipe({
+   // Ajout de la recette en BDD méthode 1
+  /* const maRecette = new Recipe({
     name: 'Cookies au chocolat praliné',
     introduction: 'Recette de cookies de ma grand-mère, elle est super bonne. Créée en 1840 et transmise de génération en génération.',
     nbIngredients: 7,
     publishedAt: new Date()
   });
+  // Sauvgarde
   maRecette.save((err, recipe) => {
     if(err) {
       console.log(err);
@@ -30,7 +31,22 @@ router.route('/creation')
       console.log(recipe);
     }
   });
-  res.send('<h1<Recette créé</h1>');
+  res.send('<h1>Recette créé</h1>');
+});*/ 
+// méthode 2
+Recipe.create({
+  name: 'Cookies au chocolat praliné',
+  introduction: 'Recette de cookies de ma grand-mère, elle est super bonne. Créée en 1840 et transmise de génération en génération.',
+  nbIngredients: 7,
+  publishedAt: new Date()
+},(err, recipe) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(recipe);
+    }
+  });
+  res.send('<h1>Recette créé</h1>'); 
 });
 
 //Modifier un produit
