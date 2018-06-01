@@ -38,7 +38,16 @@ Recipe.create({
   name: 'Cookies au chocolat praliné',
   introduction: 'Recette de cookies de ma grand-mère, elle est super bonne. Créée en 1840 et transmise de génération en génération.',
   nbIngredients: 7,
-  publishedAt: new Date()
+  publishedAt: new Date(),
+  ingredients:[
+    { name: "sucre cassonade", quantity: 100, unit: "g" },
+    { name: "levure chimique", quantity: 0.5, unit: "sachet" },
+    { name: "oeufs", quantity: 4, unit: "pieces" },
+    { name: "chocolat", quantity: 100, unit: "g" },
+    { name: "farine", quantity: 300, unit: "g" },
+    { name: "praliné", quantity: 100, unit: "g" },
+    { name: "fleure de sel", quantity: 1, unit: "pincée" }
+  ]
 },(err, recipe) => {
     if(err) {
       console.log(err);
