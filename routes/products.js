@@ -48,7 +48,7 @@ Recipe.create({
     { name: "praliné", quantity: 100, unit: "g" },
     { name: "fleure de sel", quantity: 1, unit: "pincée" }
   ]
-},(err, recipe) => {
+},(err, recette) => {
     if(err) {
       console.log(err);
     } else {
@@ -83,12 +83,13 @@ router.delete('/suppression', (req, res) =>{
   res.send('Produit supprimé');
 });
 // utilisation de plusieur callbacks.
-router.get('/detail/:name',(req, res, next)=>{
+router.get('/detail/:id',(req, res, next)=>{
   console.log("[spy]: Accès au detail du produit");
    // on passe au middleware suivant
    next();
 },(req, res, )=>{
-  res.send(`<h1>Detait du produit: ${req.params.name}</h1>`);
+  // find avec id
+  res.render(`produits/detail`);
 }
 );
 
