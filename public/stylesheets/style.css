@@ -6,3 +6,12 @@ body {
 a {
   color: rgb(0, 225, 255);
 }
+img{
+  width: 1280px;
+}
+
+h1{
+  text-align: center;
+  color: crimson;
+  text-transform: uppercase;
+}
