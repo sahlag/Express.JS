@@ -58,6 +58,22 @@ Recipe.create({
   res.send('<h1>Recette créé</h1>'); 
 });
 
+router.get('/', (req, res)=>{
+  // Récupération des recettes
+  Recipe.find(
+    (err, recipes)=>{
+      if(err){
+        next(err)// il cherche le meddelwere qui gére le erreurs 
+      }else{
+        console.log ('Recettes récupérées');
+        console.log(recipes)
+        //Renvoi vers une vue (pour afficher la recette)
+        res.render('produits/list',{recipes:recipes});
+      }
+    }
+  );
+  
+})
 //Modifier un produit
 router.put('/Modification', (req, res) =>{
   res.send('produit modifier');
